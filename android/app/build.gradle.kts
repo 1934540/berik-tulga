@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "kz.beriktulga.berik_tulga"
-    compileSdk = 37
+    compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
