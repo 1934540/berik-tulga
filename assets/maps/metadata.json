@@ -1,0 +1,61 @@
+{
+  "city": "Қызылорда",
+  "bounds": [
+    65.34,
+    44.72,
+    65.7,
+    44.98
+  ],
+  "source": "OpenStreetMap contributors",
+  "license": "ODbL-1.0",
+  "copyright_url": "https://www.openstreetmap.org/copyright",
+  "downloaded_utc": "2026-10-05T05:22:49.643692+00:00",
+  "osm_timestamp": "2026-10-05T05:18:04Z",
+  "endpoint": "https://overpass-api.de/api/interpreter",
+  "query": "[out:json][timeout:180];\n(\n way[highway](44.72,65.34,44.98,65.7);\n way[building](44.72,65.34,44.98,65.7);\n way[natural=water](44.72,65.34,44.98,65.7);\n relation[natural=water](44.72,65.34,44.98,65.7);\n way[waterway](44.72,65.34,44.98,65.7);\n way[railway=rail](44.72,65.34,44.98,65.7);\n way[landuse~\"forest|grass|recreation_ground|cemetery\"](44.72,65.34,44.98,65.7);\n way[leisure~\"park|garden|pitch\"](44.72,65.34,44.98,65.7);\n node[place~\"city|suburb|neighbourhood\"](44.72,65.34,44.98,65.7);\n);\nout geom;",
+  "sha256": "37d2261bd36b5a33c180bddcc6d1e9110cbf117a7182648a5221d1a18e260e5d",
+  "features": {
+    "place": 7,
+    "waterway": 106,
+    "road": 5669,
+    "water": 29,
+    "building": 45214,
+    "rail": 223,
+    "green": 196
+  },
+  "package_sha256": "d2782821ed163c7e2e17cc7932c23e5e3bbd0a0478a9462679de267062b0e6bb",
+  "glyph_source": "https://tiles.openfreemap.org/fonts/{fontstack}/{range}.pbf",
+  "font": "Noto Sans Regular",
+  "files": [
+    {
+      "file": "kyzylorda.geojson",
+      "bytes": 12936158,
+      "sha256": "37d2261bd36b5a33c180bddcc6d1e9110cbf117a7182648a5221d1a18e260e5d"
+    },
+    {
+      "file": "glyphs/Noto Sans Regular/0-255.pbf",
+      "bytes": 76580,
+      "sha256": "ef1f38a3f1978591e846e9eaddf8a54f7047f546fc6aaed7872cc53151a5de78"
+    },
+    {
+      "file": "glyphs/Noto Sans Regular/256-511.pbf",
+      "bytes": 127219,
+      "sha256": "992557f9e2574cfb9a75e16c7b52832578849772b7c9a6e480d6213fb008fe5d"
+    },
+    {
+      "file": "glyphs/Noto Sans Regular/1024-1279.pbf",
+      "bytes": 125222,
+      "sha256": "834adb7f3ea9944ea530214841ee098e5482e85180f14df85036939261e0ffbb"
+    },
+    {
+      "file": "glyphs/Noto Sans Regular/8192-8447.pbf",
+      "bytes": 34070,
+      "sha256": "f061e5b4e42e5925228534d8822b423a029569263db09f5ce44573600d45295f"
+    },
+    {
+      "file": "glyphs/Noto Sans Regular/8448-8703.pbf",
+      "bytes": 42129,
+      "sha256": "9e333bdeee3c44c429fb7f6911b3c1602a69402d541908832282d5eb3a467003"
+    }
+  ]
+}

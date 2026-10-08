@@ -1,0 +1,27 @@
+{
+  "version": 8,
+  "name": "Берік Тұлға · Қызылорда offline",
+  "sources": {
+    "city": {
+      "type": "geojson",
+      "data": "kyzylorda.geojson",
+      "attribution": "© <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap contributors</a> · ODbL",
+      "maxzoom": 16,
+      "tolerance": 0.4
+    }
+  },
+  "glyphs": "glyphs/{fontstack}/{range}.pbf",
+  "layers": [
+    {"id": "background", "type": "background", "paint": {"background-color": "#F3F2EE"}},
+    {"id": "green", "type": "fill", "source": "city", "filter": ["==", ["get", "kind"], "green"], "paint": {"fill-color": "#DCE8D2", "fill-opacity": 0.8}},
+    {"id": "water", "type": "fill", "source": "city", "filter": ["==", ["get", "kind"], "water"], "paint": {"fill-color": "#A8CFDD"}},
+    {"id": "waterways", "type": "line", "source": "city", "filter": ["==", ["get", "kind"], "waterway"], "paint": {"line-color": "#A8CFDD", "line-width": ["interpolate", ["linear"], ["zoom"], 10, 1, 16, 4]}},
+    {"id": "buildings", "type": "fill", "source": "city", "minzoom": 14, "filter": ["==", ["get", "kind"], "building"], "paint": {"fill-color": "#DDDCD6", "fill-outline-color": "#CFCFC7"}},
+    {"id": "road-casing", "type": "line", "source": "city", "filter": ["==", ["get", "kind"], "road"], "layout": {"line-cap": "round", "line-join": "round"}, "paint": {"line-color": "#D7D6CD", "line-width": ["interpolate", ["linear"], ["zoom"], 10, 1.5, 14, 4, 17, 13]}},
+    {"id": "roads", "type": "line", "source": "city", "filter": ["==", ["get", "kind"], "road"], "layout": {"line-cap": "round", "line-join": "round"}, "paint": {"line-color": "#FFFFFF", "line-width": ["interpolate", ["linear"], ["zoom"], 10, 0.6, 14, 2.5, 17, 10]}},
+    {"id": "main-roads", "type": "line", "source": "city", "filter": ["all", ["==", ["get", "kind"], "road"], ["match", ["get", "class"], ["trunk", "primary", "secondary", "tertiary", "trunk_link", "primary_link"], true, false]], "layout": {"line-cap": "round", "line-join": "round"}, "paint": {"line-color": "#F6E2B8", "line-width": ["interpolate", ["linear"], ["zoom"], 10, 1.5, 14, 4, 17, 12]}},
+    {"id": "rail", "type": "line", "source": "city", "filter": ["==", ["get", "kind"], "rail"], "paint": {"line-color": "#A6A59E", "line-width": 1.3, "line-dasharray": [3, 2]}},
+    {"id": "road-labels", "type": "symbol", "source": "city", "minzoom": 13, "filter": ["all", ["==", ["get", "kind"], "road"], ["!=", ["get", "name"], ""]], "layout": {"symbol-placement": "line", "text-field": ["get", "name"], "text-font": ["Noto Sans Regular"], "text-size": ["interpolate", ["linear"], ["zoom"], 13, 10, 17, 13], "text-padding": 8, "symbol-spacing": 260, "text-max-angle": 35}, "paint": {"text-color": "#575B55", "text-halo-color": "#FFFFFF", "text-halo-width": 1.5}},
+    {"id": "place-labels", "type": "symbol", "source": "city", "filter": ["==", ["get", "kind"], "place"], "layout": {"text-field": ["get", "name"], "text-font": ["Noto Sans Regular"], "text-size": 17, "text-padding": 14}, "paint": {"text-color": "#4D574B", "text-halo-color": "#FFFFFF", "text-halo-width": 2}}
+  ]
+}

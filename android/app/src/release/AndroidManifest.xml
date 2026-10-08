@@ -1,0 +1,3 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Release builds inherit INTERNET from the main manifest for Supabase. -->
+</manifest>

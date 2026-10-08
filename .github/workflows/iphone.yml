@@ -1,0 +1,59 @@
+name: Build iPhone IPA
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: iphone-sideload
+  cancel-in-progress: false
+
+jobs:
+  iphone:
+    runs-on: macos-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out app
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Check out Flutter 3.47.6
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: flutter/flutter
+          ref: 3.47.6
+          path: .ci/flutter-sdk
+          persist-credentials: false
+
+      - name: Configure Flutter
+        run: |
+          test "$(git -C .ci/flutter-sdk rev-parse HEAD)" = "5fc346839b5d0eef006ed8404392afb4dfae428d"
+          echo "$GITHUB_WORKSPACE/.ci/flutter-sdk/bin" >> "$GITHUB_PATH"
+          .ci/flutter-sdk/bin/flutter --version
+          xcodebuild -version
+
+      - name: Download iOS tools and dependencies
+        run: |
+          flutter precache --ios
+          flutter pub get
+
+      - name: Analyze and test
+        run: |
+          flutter analyze
+          flutter test
+
+      - name: Build IPA for signing on Windows
+        run: bash scripts/ios.sh sideload
+
+      - name: Save IPA and checksum
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: berik-tulga-iphone
+          path: |
+            build/ios/sideload/berik-tulga-unsigned.ipa
+            build/ios/sideload/berik-tulga-unsigned.ipa.sha256
+          if-no-files-found: error
+          retention-days: 7
